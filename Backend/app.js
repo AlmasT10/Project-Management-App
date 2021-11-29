@@ -14,7 +14,7 @@ app.options("*", cors());
 //Middleware
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use(authJwt());
+
 app.use(errorHandler);
 
 //Routes
@@ -39,5 +39,5 @@ mongoose
   });
 
 app.listen(3000, () => {
-  console.log("Server is running http://localhost:3000");
+  console.log("Server is running at port:3000");
 });
