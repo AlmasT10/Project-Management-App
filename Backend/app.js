@@ -14,7 +14,7 @@ app.options("*", cors());
 //Middleware
 app.use(express.json());
 app.use(morgan("tiny"));
-
+// app.use(authJwt());
 app.use(errorHandler);
 
 //Routes

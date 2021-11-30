@@ -16,14 +16,9 @@ router.get("/", async (req, res) => {
 });
 
 //fetch tasks for selected project
-router.get("/", async (req, res) => {
-  let filter;
-  if (req.query.project) {
-    const filter = { project: req.query.project };
-  }
-
+router.get("/:project", async (req, res) => {
   const tasks = await Task.find({
-    filter,
+    project: req.params.project,
   });
 
   if (!tasks) {

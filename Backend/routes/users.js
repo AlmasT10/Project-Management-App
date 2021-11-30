@@ -20,7 +20,18 @@ router.get("/:id", async (req, res) => {
   if (!user) {
     res.status(500).json({ message: "The user with given id was not found" });
   }
-  res.status(200).send(task);
+  res.status(200).send(user);
+});
+
+router.get("/?email", async (req, res) => {
+  const user = await User.findOne({
+    email: req.query.email,
+  });
+
+  if (!user) {
+    res.status(500).json({ message: "The user with given id was not found" });
+  }
+  res.status(200).send(user);
 });
 
 router.post("/", async (req, res) => {
@@ -71,7 +82,11 @@ router.post("/login", async (req, res) => {
     //     expiresIn: "1d",
     //   }
     // );
-    res.status(200).send({ user: user.email });
+    res.status(200).send({
+      user: user.email,
+      isAdmin: user.isAdmin,
+      name: user.name,
+    });
   } else {
     res.status(400).send("Wrong password");
   }
